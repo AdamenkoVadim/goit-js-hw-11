@@ -50,7 +50,7 @@ body {
   display: flex;
   justify-content: center;
   padding: 20px;
-  background-color: #6ecce1;
+  background-color: #3d46e1;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   position: fixed;
   width: 100vw;
@@ -120,8 +120,8 @@ body {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  background-color: #6ecce1;
-  border-color: #6ecce1;
+  background-color: #3d46e1;
+  border-color: #3d46e1;
   border-radius: 4px;
   color: #272b45;
   transition-duration: 800ms;
