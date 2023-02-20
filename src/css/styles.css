@@ -1,0 +1,141 @@
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+	margin: 0;
+	padding-left: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+img {
+	display: block;
+}
+
+body {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+  color: #2a2a2a;
+}
+ 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #6ecce1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100vw;
+}
+
+.input__wrap {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  gap: 10px;
+}
+
+.search-form input {
+  border-style: none;
+  align-content: center;
+  border-radius: 4px;
+}
+
+.search-form input :focus {
+  outline: #6ecce1;
+}
+
+.btn-search {
+  border-radius: 4px;
+  border-style: none;
+  color: #272b45;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;  
+}
+
+.photo-card {
+  margin: 10px;
+  width: 300px;
+}
+
+.info-item {
+  margin-bottom: 3px;
+}
+
+.photo-card img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 80%);
+  margin-bottom: 10px;
+  transition-duration: 1000ms;
+}
+
+.photo-card img:hover {
+  transform: scale(1.3);
+  transition-duration: 1000ms;
+}
+
+.btn-wriper {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #6ecce1;
+  border-color: #6ecce1;
+  border-radius: 4px;
+  color: #272b45;
+  transition-duration: 800ms;
+}
+
+.load-more:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0.66);
+  color: #0a143578;
+  font-weight: 600;
+  transition-duration: 800ms;
+}
+
+.is-hidden {
+  display: none;
+}
