@@ -3,7 +3,6 @@ import fetchImages from "./js/fetchImages";
 import { Notify } from "notiflix";
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { log } from 'handlebars';
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
@@ -21,7 +20,6 @@ async function onSearch(e) {
 
   gallery.innerHTML = '';
   searchQery = e.currentTarget.searchQuery.value;
-  console.log(searchQery);
   page = 1;
   const response = await fetchImages(searchQery, page, per_page);
   const images = response.data.hits;
@@ -107,10 +105,7 @@ window.addEventListener('scroll', () => {
       }
       appendImagesMarkup(images);
       page += 1;
-      console.log(page);
     }
-  
-
   }
 }
 );
