@@ -102,12 +102,3 @@ function appendImagesMarkup(images) {
   });
 }
 
-window.addEventListener('scroll', () => {
-  console.log('top', documentRect.top);
-  console.log('bottom', documentRect.bottom);
-  const documentRect = document.documentElement.getBoundingClientRect();
-  if(documentRect.bottom < document.documentElement.clientHeight + 150) {
-    console.log('dan');
-    
-  }
-})
