@@ -3,6 +3,7 @@ import fetchImages from "./js/fetchImages";
 import { Notify } from "notiflix";
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import { log } from 'handlebars';
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
@@ -13,7 +14,7 @@ const per_page = 20;
 let searchQery = null;
 
 searchForm.addEventListener('submit', onSearch);
-loadMoreBtn.addEventListener('click', onLoadMore);
+//loadMoreBtn.addEventListener('click', onLoadMore);
 
 async function onSearch(e) {
   e.preventDefault();  
@@ -35,19 +36,7 @@ async function onSearch(e) {
   loadMoreBtn.classList.remove('is-hidden');
 }
 
-async function onLoadMore(e) {
-  const response = await fetchImages(searchQery, page, per_page);
-  const images = response.data.hits;
-  const totalImages = response.data.totalHits;
-  const totalPages = page * per_page;
-  if (totalImages <= totalPages) {
-    Notify.info("We're sorry, but you've reached the end of search results.");
-    loadMoreBtn.classList.add('is-hidden');
-  }
-  appendImagesMarkup(images);
-  page += 1;
-  console.log(page);
-}
+
 
 function imageMarkup(images) {
          return images.map(
@@ -102,3 +91,26 @@ function appendImagesMarkup(images) {
   });
 }
 
+window.addEventListener('scroll', () => {
+  const documentRect = document.documentElement.getBoundingClientRect();
+  
+  if(documentRect.bottom < document.documentElement.clientHeight) {
+    onLoadMore();
+    async function onLoadMore(e) {
+      const response = await fetchImages(searchQery, page, per_page);
+      const images = response.data.hits;
+      const totalImages = response.data.totalHits;
+      const totalPages = page * per_page;
+      if (totalImages <= totalPages) {
+        Notify.info("We're sorry, but you've reached the end of search results.");
+        loadMoreBtn.classList.add('is-hidden');
+      }
+      appendImagesMarkup(images);
+      page += 1;
+      console.log(page);
+    }
+  
+
+  }
+}
+);
