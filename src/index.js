@@ -108,7 +108,7 @@ window.addEventListener('scroll', () => {
       }
       appendImagesMarkup(images);
       page += 1;
-      console.log(page);
+      console.log('PAGE',page);
     }
   }
 }
