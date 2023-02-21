@@ -3,6 +3,7 @@ import fetchImages from "./js/fetchImages";
 import { Notify } from "notiflix";
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import { log } from 'handlebars';
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
@@ -10,19 +11,20 @@ const loadMoreBtn = document.querySelector('.load-more');
 
 let page = 1;
 const per_page = 20;
-let searchQuery = null;
+let searchQery = null;
 
 searchForm.addEventListener('submit', onSearch);
 //loadMoreBtn.addEventListener('click', onLoadMore);
-loadMoreBtn.classList.remove('is-hidden');
+
 
 async function onSearch(e) {
   e.preventDefault();  
 
   gallery.innerHTML = '';
-  searchQuery = e.currentTarget.searchQuery.value;
+  searchQery = e.currentTarget.searchQuery.value;
+  console.log(searchQery);
   page = 1;
-  const response = await fetchImages(searchQuery, page, per_page);
+  const response = await fetchImages(searchQery, page, per_page);
   const images = response.data.hits;
   const totalImages = response.data.totalHits;
 
@@ -32,6 +34,7 @@ async function onSearch(e) {
     Notify.failure('Sorry, there are no images matching your search query. Please try again.');
   }
   appendImagesMarkup(images);
+  loadMoreBtn.classList.remove('is-hidden');
 }
 
 
@@ -105,6 +108,7 @@ window.addEventListener('scroll', () => {
       }
       appendImagesMarkup(images);
       page += 1;
+      console.log(page);
     }
   }
 }
