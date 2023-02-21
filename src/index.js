@@ -10,18 +10,19 @@ const loadMoreBtn = document.querySelector('.load-more');
 
 let page = 1;
 const per_page = 20;
-let searchQery = null;
+let searchQuery = null;
 
 searchForm.addEventListener('submit', onSearch);
 //loadMoreBtn.addEventListener('click', onLoadMore);
+loadMoreBtn.classList.remove('is-hidden');
 
 async function onSearch(e) {
   e.preventDefault();  
 
   gallery.innerHTML = '';
-  searchQery = e.currentTarget.searchQuery.value;
+  searchQuery = e.currentTarget.searchQuery.value;
   page = 1;
-  const response = await fetchImages(searchQery, page, per_page);
+  const response = await fetchImages(searchQuery, page, per_page);
   const images = response.data.hits;
   const totalImages = response.data.totalHits;
 
@@ -31,7 +32,6 @@ async function onSearch(e) {
     Notify.failure('Sorry, there are no images matching your search query. Please try again.');
   }
   appendImagesMarkup(images);
-  loadMoreBtn.classList.remove('is-hidden');
 }
 
 
