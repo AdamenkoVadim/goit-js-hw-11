@@ -9,7 +9,7 @@ const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
 let page = 1;
-const per_page = 40;
+const per_page = 20;
 let searchQery = null;
 
 searchForm.addEventListener('submit', onSearch);
@@ -101,3 +101,13 @@ function appendImagesMarkup(images) {
     close: false,
   });
 }
+
+window.addEventListener('scroll', () => {
+  console.log('top', documentRect.top);
+  console.log('bottom', documentRect.bottom);
+  const documentRect = document.documentElement.getBoundingClientRect();
+  if(documentRect.bottom < document.documentElement.clientHeight + 150) {
+    console.log('dan');
+    
+  }
+})
