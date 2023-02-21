@@ -10,4 +10,3 @@ export default async function fetchImages(name, page, per_page) {
     console.error(error);
   }
 }
-console.log(fetchImages())

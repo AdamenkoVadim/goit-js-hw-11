@@ -3,7 +3,7 @@ import fetchImages from "./js/fetchImages";
 import { Notify } from "notiflix";
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { log } from 'handlebars';
+
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
@@ -11,7 +11,7 @@ const loadMoreBtn = document.querySelector('.load-more');
 
 let page = 1;
 const per_page = 20;
-let searchQery = null;
+let searchQuery = null;
 
 searchForm.addEventListener('submit', onSearch);
 //loadMoreBtn.addEventListener('click', onLoadMore);
@@ -21,10 +21,10 @@ async function onSearch(e) {
   e.preventDefault();  
 
   gallery.innerHTML = '';
-  searchQery = e.currentTarget.searchQuery.value;
-  console.log(searchQery);
+  searchQuery = e.currentTarget.searchQuery.value;
+
   page = 1;
-  const response = await fetchImages(searchQery, page, per_page);
+  const response = await fetchImages(searchQuery, page, per_page);
   const images = response.data.hits;
   const totalImages = response.data.totalHits;
 
@@ -98,7 +98,7 @@ window.addEventListener('scroll', () => {
   if(documentRect.bottom < document.documentElement.clientHeight) {
     onLoadMore();
     async function onLoadMore(e) {
-      const response = await fetchImages(searchQery, page, per_page);
+      const response = await fetchImages(searchQuery, page, per_page);
       const images = response.data.hits;
       const totalImages = response.data.totalHits;
       const totalPages = page * per_page;
@@ -108,7 +108,7 @@ window.addEventListener('scroll', () => {
       }
       appendImagesMarkup(images);
       page += 1;
-      console.log('PAGE',page);
+
     }
   }
 }
