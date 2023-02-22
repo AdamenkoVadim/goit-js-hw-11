@@ -1,21 +1,27 @@
 import './css/styles.css'
 import fetchImages from "./js/fetchImages";
+import imageMarkup from './js/imageMarkup';
 import { Notify } from "notiflix";
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-
+console.log('11111111');
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
 
 let page = 1;
-const per_page = 20;
+const per_page = 40;
 let searchQuery = null;
 
 searchForm.addEventListener('submit', onSearch);
 //loadMoreBtn.addEventListener('click', onLoadMore);
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+  close: false,
+});
 
 async function onSearch(e) {
   e.preventDefault();  
@@ -39,7 +45,7 @@ async function onSearch(e) {
 
 
 
-function imageMarkup(images) {
+/* function imageMarkup(images) {
          return images.map(
              ({
              webformatURL,
@@ -80,16 +86,11 @@ function imageMarkup(images) {
            )
            .join('');
                                
-      }
+      } */
 
 function appendImagesMarkup(images) {
   gallery.insertAdjacentHTML('beforeend', imageMarkup(images));
-
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionDelay: 250,
-    close: false,
-  });
+  lightbox.refresh()
 }
 
 window.addEventListener('scroll', () => {
