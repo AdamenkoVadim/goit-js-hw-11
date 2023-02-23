@@ -4,11 +4,11 @@ import imageMarkup from './js/imageMarkup';
 import { Notify } from "notiflix";
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-console.log('11111111');
+console.log('33333');
 
 const searchForm = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
-const loadMoreBtn = document.querySelector('.load-more');
+//const loadMoreBtn = document.querySelector('.load-more');
 
 let page = 1;
 const per_page = 40;
@@ -40,7 +40,7 @@ async function onSearch(e) {
     Notify.failure('Sorry, there are no images matching your search query. Please try again.');
   }
   appendImagesMarkup(images);
-  loadMoreBtn.classList.remove('is-hidden');
+  //loadMoreBtn.classList.remove('is-hidden');
 }
 
 
@@ -96,20 +96,20 @@ function appendImagesMarkup(images) {
 window.addEventListener('scroll', () => {
   const documentRect = document.documentElement.getBoundingClientRect();
   
-  if(documentRect.bottom < document.documentElement.clientHeight) {
+  if(documentRect.bottom < document.documentElement.clientHeight+2) {
     onLoadMore();
     async function onLoadMore(e) {
-      const response = await fetchImages(searchQuery, page, per_page);
+      const response = await fetchImages(searchQuery, page+1, per_page);
       const images = response.data.hits;
       const totalImages = response.data.totalHits;
       const totalPages = page * per_page;
       if (totalImages <= totalPages) {
         Notify.info("We're sorry, but you've reached the end of search results.");
-        loadMoreBtn.classList.add('is-hidden');
+        //loadMoreBtn.classList.add('is-hidden');
       }
       appendImagesMarkup(images);
       page += 1;
-
+      console.log(page);
     }
   }
 }
